@@ -1,9 +1,6 @@
 // this is the same code used for test.js, just pared down for the demo 
 // this code is mostly from the quickstart guide webgazer provides, here: https://webgazer.cs.brown.edu/
 
-// testing
-// alert("Machine is starting up. Please wait a few seconds.");
-
 window.saveDataAcrossSessions = false;
 var videoElementCanvas = ({width: 400, height: 400}); // dummy variables so won't throw errors
 
@@ -22,10 +19,9 @@ window.onload = async function() {
 	const webgazerInstance = await webgazer.setRegression('ridge') // tensor flow based regression alg
 	  .setTracker('TFFacemesh')
 	  .begin();
-	webgazerInstance.showVideoPreview(true) // show webcam preview
+	const waiting = await webgazerInstance.showVideoPreview(true) // show webcam preview
 	  .showPredictionPoints(true) // 100 ms. update on prediction square
 	  .applyKalmanFilter(true); // Kalman Filter defaults to on.
-
 };
 
 // get coordinates real time
@@ -41,23 +37,26 @@ webgazer.setGazeListener(function(data, elapsedTime) {
     // console.log(elapsedTime); //elapsed time is based on time since begin was called
 	});
 
-// demo animations
-const dialogueSVG = "dialogueSVG";
-function appendDialogue() {
-	var svg = d3.select("body").append("circle")
-	    .attr("id", dialogueSVG)
-	    .attr('cx', 100)
-	  	.attr('cy', 100)
-	  	.attr('r', 50)
-	  	.attr('stroke', 'black')
-	  	.attr('fill', '#69a3b2')
-	    .style("top", "500px")
-	    .style("left","500px")
-	    .style("margin","0px")
-	    .style("position","absolute");
+d3.select("body").append("svg").attr("width", 1000).attr("height", 1000).append("circle").attr("cx", 500).attr("cy", 500).attr("r", 80).style("fill", "purple");
+
+// demo animation - click function
+window.ondblclick = startAnimation;
+
+function startAnimation () {
+	// delay 0.5 seconds bc webcam takes a second to pop up anyways
+	setTimeout(() => { 
+		alert("Voice command: Click now!");
+	}, 1000); 
+
+	// delay as if clicking
+	setTimeout(() => { 
+		d3.select("circle").style("fill", "blue");
+	}, 2000);
+	
 }
 
-setTimeout(() => { 
-	alert("Voice command: Click now!");
-}, 5000); // 5 seconds
+
+
+
+
 

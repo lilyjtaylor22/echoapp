@@ -1,11 +1,11 @@
-// this code does not work ... just cp/p from https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/speech-sdk?tabs=browser%2Cubuntu%2Cios-xcode%2Cmac-xcode%2Candroid-studio#get-the-speech-sdk
+// this code does not work ... 
+// quickstart: https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/speech-sdk?tabs=browser%2Cubuntu%2Cios-xcode%2Cmac-xcode%2Candroid-studio#get-the-speech-sdk
 // does contain the key, which is important ... but struggling to find how to get output???
 // methods documentation: https://docs.microsoft.com/en-us/javascript/api/microsoft-cognitiveservices-speech-sdk/speechconfig?view=azure-node-latest#enableDictation__
 // demo: https://azure.microsoft.com/en-us/services/cognitive-services/speech-to-text/#features
 
-// works in web browser apps
-// take my keeeeey ... signed up for free trial with Azure
-const sdk = require("microsoft-cognitiveservices-speech-sdk");
+// need an alternative to require
+const sdk =  require("microsoft-cognitiveservices-speech-sdk");
 const speechConfig = sdk.SpeechConfig.fromSubscription("68fa17c9-be19-4cb9-930b-f94780b70188", "West US 2");
 
 
@@ -22,8 +22,7 @@ function fromMic() {
 fromMic();
 
 // change default from English
-speechConfig.speechRecognitionLanguage = "it-IT";
-
+// speechConfig.speechRecognitionLanguage = "it-IT";
 
 // initialize speech recognition
 const recognizer = new sdk.SpeechRecognizer(speechConfig);
@@ -59,13 +58,13 @@ recognizer.sessionStopped = (s, e) => {
     recognizer.stopContinuousRecognitionAsync();
 };
 
+// output written to e.result.text???
+
 // start listening to speech
 recognizer.startContinuousRecognitionAsync();
 
 // make the following call at some point to stop recognition.
 // recognizer.StopContinuousRecognitionAsync();
-
-// output????
 
 
 // enables "period" --> "."
