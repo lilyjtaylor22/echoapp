@@ -19,26 +19,16 @@
       .applyKalmanFilter(true); // Kalman Filter defaults to on.
   };
 
-console.log("Hello world.");
-// var prediction = webgazer.getCurrentPrediction();
-// if (prediction) {
-//     var x = prediction.x;
-//     var y = prediction.y;
-// }
-// console.log(x,y);
-var webgazerCanvas = null;
-webgazerCanvas = webgazer.getVideoElementCanvas();
-webgazer.getTracker().getEyePatches(webgazerCanvas, webgazerCanvas.width, webgazerCanvas.height);
-var fmPositions = webgazer.getTracker().getPositions();
+// get coordinates real time
+// be careful, this is a real energy drain; turn on console print only if necessary
+// to turn on live coords, flip console.log(xpred ...)
+webgazer.setGazeListener(function(data, elapsedTime) {
+  if (data == null) {
+      return;
+  }
 
-console.log(fmPositions);
-
-
-// var prediction = webgazer.getCurrentPrediction();
-// if (prediction) {
-//     var x = prediction.x;
-//     var y = prediction.y;
-// }
-// console.log(prediction);
-
-// console.log(webgazer.getCurrentPrediction());
+  var xprediction = data.x; //these x coordinates are relative to the viewport
+  var yprediction = data.y; //these y coordinates are relative to the viewport
+  // console.log(xprediction,yprediction); // this logs x/y coords instead of elapsed time
+  // console.log(elapsedTime); //elapsed time is based on time since begin was called
+});
