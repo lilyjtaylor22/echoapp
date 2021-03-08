@@ -1,6 +1,6 @@
-# echoapp
+# OptiApp
 
-Echo is a friendly desktop pet that helps students navigate around their computer without the use of a mouse or keyboard. 
+Opti is an open source tool that lets students use their computer without the use of a mouse or keyboard. 
 
 We will use the following technologies to build: 
 
